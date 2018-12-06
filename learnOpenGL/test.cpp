@@ -92,30 +92,58 @@ int main()
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	float vertices[] = {
-		-0.5f,-0.5f,0.0f,
-		 0.5f,-0.5f,0.0f,
-		 0.0f, 0.5f,0.0f
-	};
+	//float vertices[] = {
+	//	-0.5f,-0.5f,0.0f,
+	//	 0.5f,-0.5f,0.0f,
+	//	 0.0f, 0.5f,0.0f
+	//};
 
-	//创建顶点缓冲对象，顶点数组对象
-	unsigned int VBO, VAO;
-	glGenVertexArrays(1,&VAO);
+	////创建顶点缓冲对象，顶点数组对象
+	//unsigned int VBO, VAO;
+	//glGenVertexArrays(1,&VAO);
+	//glGenBuffers(1, &VBO);
+	////先绑定VAO,然后绑定并设置VBO，然后设置顶点属性
+	//glBindVertexArray(VAO);
+
+	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
+
+	////解绑
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//glBindVertexArray(0);
+
+	float vertices[] = {
+		 0.5f, 0.5f,0.0f,
+		 0.5f,-0.5f,0.0f,
+		-0.5f,-0.5f,0.0f,
+		-0.5f, 0.5f,0.0f
+	};
+	unsigned int indices[] = {
+		0,1,3,//第一个三角形
+		1,2,3 //第二个三角形
+	};
+	unsigned int VBO, VAO, EBO;
+	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-	//先绑定VAO,然后绑定并设置VBO，然后设置顶点属性
+	glGenBuffers(1, &EBO);
+
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	//解绑
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
 
-
+	glBindVertexArray(0);//保持EBO绑定
 
 
 
@@ -131,8 +159,10 @@ int main()
 
 		//画三角形
 		glUseProgram(shaderProgram);
+		/*glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);*/
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);//第三个参数代表索引的类型
 
 		glfwPollEvents();//检查是否触发事件,并调用对应的回调函数
 		glfwSwapBuffers(window);//在迭代中用于绘制
@@ -140,8 +170,8 @@ int main()
 
 	}
 
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
+	/*glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);*/
 
 	glfwTerminate();//释放资源
 	return 0;
