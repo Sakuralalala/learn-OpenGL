@@ -107,7 +107,7 @@ int main()
 
 	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
+	//设置顶点属性
 	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	//glEnableVertexAttribArray(0);
 
@@ -159,9 +159,9 @@ int main()
 
 		//画三角形
 		glUseProgram(shaderProgram);
-		/*glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);*/
-		glBindVertexArray(VAO);
+		//glBindVertexArray(VAO);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);//第三个参数代表画几个顶点
+		glBindVertexArray(VAO);//绑定VAO;
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);//第三个参数代表索引的类型
 
 		glfwPollEvents();//检查是否触发事件,并调用对应的回调函数
