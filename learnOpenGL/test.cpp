@@ -39,7 +39,7 @@ int main()
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	
-	Shader ourShader("texture.vs", "texture.fs");
+	Shader ourShader("Shader/texture.vs", "Shader/texture.fs");
 
 
 	//float vertices[] = {
@@ -116,7 +116,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//加载并生成纹理
 	int width, height, nrChannels;
-	unsigned char*data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+	unsigned char*data = stbi_load("Texture/container.jpg", &width, &height, &nrChannels, 0);
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
