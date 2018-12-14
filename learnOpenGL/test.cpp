@@ -1,25 +1,14 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<iostream>
+#include<stb_image.h>
+#include"Shader.h"
+
 //视口调整回调函数
 void framebuffer_size_callback(GLFWwindow* window,int width,int height);
 //按键检测是否按下ESC
 void processInput(GLFWwindow *window);
 
-//顶点着色器
-const char *vertexShaderSource = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-	    "{\n"
-        "   gl_Position = vec4(aPos.x,aPos.y,aPos.z,1.0);\n"
-        "}\0";
-//片源着色器
-const char *fragmentShaderSource = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\n\0";
 
 
 int main() 
@@ -29,7 +18,7 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);//主版本号=3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);//次版本号=3
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);//使用核心模式
-
+	
 	//创建第一个窗口
 	GLFWwindow* window = glfwCreateWindow(800, 600, "MyFirstOpenGL", NULL, NULL);
 	if (window == NULL) 
@@ -49,53 +38,15 @@ int main()
 	//openGL渲染窗口的尺寸
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	
+	Shader ourShader("texture.vs", "texture.fs");
 
-
-	//编译shader
-	//顶点着色器
-	int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);//编译
-	//检查shader是否编译成功
-	int success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-	//片源着色器
-	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-
-	//链接shader
-	int shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	//检查链接错误
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success)
-	{
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog << std::endl;
-
-	}
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
 
 	//float vertices[] = {
-	//	-0.5f,-0.5f,0.0f,
-	//	 0.5f,-0.5f,0.0f,
-	//	 0.0f, 0.5f,0.0f
+	//	//---顶点位置---   ---颜色数据---
+	//	-0.5f,-0.5f,0.0f,1.0f,0.0f,0.0f,
+	//	 0.5f,-0.5f,0.0f,0.0f,1.0f,0.0f,
+	//	 0.0f, 0.5f,0.0f,0.0f,0.0f,1.0f
 	//};
 
 	////创建顶点缓冲对象，顶点数组对象
@@ -107,19 +58,23 @@ int main()
 
 	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//设置顶点属性
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	////设置顶点属性
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	//glEnableVertexAttribArray(0);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
 
 	////解绑
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//glBindVertexArray(0);
 
+	//-----------画两个三角形
 	float vertices[] = {
-		 0.5f, 0.5f,0.0f,
-		 0.5f,-0.5f,0.0f,
-		-0.5f,-0.5f,0.0f,
-		-0.5f, 0.5f,0.0f
+		//---位置数据    ---颜色数据---    ---纹理数据---
+		 0.5f, 0.5f,0.0f, 1.0f,0.0f,0.0f,  1.0f,1.0f,
+		 0.5f,-0.5f,0.0f, 0.0f,1.0f,0.0f,  1.0f,0.0f,
+		-0.5f,-0.5f,0.0f, 0.0f,0.0f,1.0f,  0.0f,0.0f,
+		-0.5f, 0.5f,0.0f, 1.0f,1.0f,0.0f,  0.0f,1.0f,
 	};
 	unsigned int indices[] = {
 		0,1,3,//第一个三角形
@@ -138,13 +93,40 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glBindVertexArray(0);//保持EBO绑定
+	//glBindVertexArray(0);//保持EBO绑定
 
+	//----读取纹理
+	unsigned int texture;
+	glGenTextures(1, &texture);
+	glActiveTexture(GL_TEXTURE0); // 在绑定纹理之前先激活纹理单元
+	glBindTexture(GL_TEXTURE_2D, texture);
+	//为当前绑定的纹理对象设置环绕，过滤方式
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	//加载并生成纹理
+	int width, height, nrChannels;
+	unsigned char*data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
 
 
 	//渲染循环
@@ -158,7 +140,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//画三角形
-		glUseProgram(shaderProgram);
+		ourShader.use();
 		//glBindVertexArray(VAO);
 		//glDrawArrays(GL_TRIANGLES, 0, 3);//第三个参数代表画几个顶点
 		glBindVertexArray(VAO);//绑定VAO;
