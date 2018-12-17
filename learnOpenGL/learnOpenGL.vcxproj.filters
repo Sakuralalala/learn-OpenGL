@@ -65,5 +65,17 @@
     <None Include="Shader\texture.vs">
       <Filter>Shader</Filter>
     </None>
+    <None Include="Shader\1.color.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\1.color.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\1.lamp.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\1.lamp.vs">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

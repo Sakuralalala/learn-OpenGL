@@ -39,6 +39,10 @@
     <Image Include="..\..\..\..\Pictures\openGL\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shader\1.color.fs" />
+    <None Include="Shader\1.color.vs" />
+    <None Include="Shader\1.lamp.fs" />
+    <None Include="Shader\1.lamp.vs" />
     <None Include="Shader\texture.fs" />
     <None Include="Shader\texture.vs" />
   </ItemGroup>
