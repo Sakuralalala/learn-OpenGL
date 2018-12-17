@@ -13,7 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="data">
+    <Filter Include="Shader">
+      <UniqueIdentifier>{a4a96e8a-b868-49fb-ab1c-115ba68901be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
       <UniqueIdentifier>{d2f84563-3dd9-4efe-a64c-552403e51dda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -38,6 +41,9 @@
     <ClInclude Include="Shader.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="learnOpenGL1.rc">
@@ -46,18 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Pictures\openGL\wall.jpg">
-      <Filter>data</Filter>
+      <Filter>Texture</Filter>
     </Image>
     <Image Include="..\..\..\..\Pictures\openGL\container.jpg">
-      <Filter>data</Filter>
+      <Filter>Texture</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="texture.vs">
-      <Filter>源文件</Filter>
+    <None Include="Shader\texture.fs">
+      <Filter>Shader</Filter>
     </None>
-    <None Include="texture.fs">
-      <Filter>源文件</Filter>
+    <None Include="Shader\texture.vs">
+      <Filter>Shader</Filter>
     </None>
   </ItemGroup>
 </Project>

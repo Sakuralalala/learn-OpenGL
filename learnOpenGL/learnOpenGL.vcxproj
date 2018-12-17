@@ -24,6 +24,7 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="Shader.h" />
@@ -38,8 +39,8 @@
     <Image Include="..\..\..\..\Pictures\openGL\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="texture.fs" />
-    <None Include="texture.vs" />
+    <None Include="Shader\texture.fs" />
+    <None Include="Shader\texture.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
