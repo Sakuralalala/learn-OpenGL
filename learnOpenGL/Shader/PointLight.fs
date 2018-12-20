@@ -11,6 +11,11 @@ struct Light{
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
+
+	//对衰减的控制系数
+	float constant;
+	float linear;
+	float quadratic;
 };
 
 
@@ -41,6 +46,13 @@ void main(){
 	float spec = pow(max(dot(viewDir,reflectDir),0.0),material.shininess);//32指的是反光度
 	vec3 specular = spec * light.specular *texture(material.specular,Texcoords).rgb;
 
+	//attenuation
+	float distance = length(light.position - FragPos);
+	float attenuation = 1.0/(light.constant + light.linear *distance + light.quadratic*(distance*distance));
+
+	ambient *= attenuation;
+	specular *= attenuation;
+	diffuse *= attenuation;
 
 	vec3 result =(ambient + diffuse + specular);
 

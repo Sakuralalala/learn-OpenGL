@@ -37,12 +37,19 @@
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="..\..\..\..\Pictures\openGL\wall.jpg" />
+    <Image Include="Texture\container2.png" />
+    <Image Include="Texture\container2_specular.png" />
+    <Image Include="Texture\matrix.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\1.color.fs" />
     <None Include="Shader\1.color.vs" />
     <None Include="Shader\1.lamp.fs" />
     <None Include="Shader\1.lamp.vs" />
+    <None Include="Shader\PointLight.fs" />
+    <None Include="Shader\PointLight.vs" />
+    <None Include="Shader\Spotlight.fs" />
+    <None Include="Shader\Spotlight.vs" />
     <None Include="Shader\texture.fs" />
     <None Include="Shader\texture.vs" />
   </ItemGroup>

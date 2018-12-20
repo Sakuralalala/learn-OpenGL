@@ -57,6 +57,15 @@
     <Image Include="..\..\..\..\Pictures\openGL\container.jpg">
       <Filter>Texture</Filter>
     </Image>
+    <Image Include="Texture\container2.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\container2_specular.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\matrix.jpg">
+      <Filter>Texture</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\texture.fs">
@@ -75,6 +84,18 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Shader\1.lamp.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\PointLight.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\PointLight.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\Spotlight.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\Spotlight.vs">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>
