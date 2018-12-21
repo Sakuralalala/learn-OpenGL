@@ -44,6 +44,12 @@
     <ClInclude Include="Camera.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="learnOpenGL1.rc">
@@ -96,6 +102,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Shader\Spotlight.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\MultipleLight.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\MultipleLight.vs">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

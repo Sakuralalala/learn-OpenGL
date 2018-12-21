@@ -25,6 +25,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="Shader.h" />
@@ -46,6 +48,8 @@
     <None Include="Shader\1.color.vs" />
     <None Include="Shader\1.lamp.fs" />
     <None Include="Shader\1.lamp.vs" />
+    <None Include="Shader\MultipleLight.fs" />
+    <None Include="Shader\MultipleLight.vs" />
     <None Include="Shader\PointLight.fs" />
     <None Include="Shader\PointLight.vs" />
     <None Include="Shader\Spotlight.fs" />
