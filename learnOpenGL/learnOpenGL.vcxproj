@@ -39,8 +39,25 @@
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="..\..\..\..\Pictures\openGL\wall.jpg" />
+    <Image Include="Texture\arm_dif.png" />
+    <Image Include="Texture\arm_showroom_ddn.png" />
+    <Image Include="Texture\arm_showroom_spec.png" />
+    <Image Include="Texture\body_dif.png" />
+    <Image Include="Texture\body_showroom_ddn.png" />
+    <Image Include="Texture\body_showroom_spec.png" />
     <Image Include="Texture\container2.png" />
     <Image Include="Texture\container2_specular.png" />
+    <Image Include="Texture\glass_ddn.png" />
+    <Image Include="Texture\glass_dif.png" />
+    <Image Include="Texture\hand_dif.png" />
+    <Image Include="Texture\hand_showroom_ddn.png" />
+    <Image Include="Texture\hand_showroom_spec.png" />
+    <Image Include="Texture\helmet_diff.png" />
+    <Image Include="Texture\helmet_showroom_ddn.png" />
+    <Image Include="Texture\helmet_showroom_spec.png" />
+    <Image Include="Texture\leg_dif.png" />
+    <Image Include="Texture\leg_showroom_ddn.png" />
+    <Image Include="Texture\leg_showroom_spec.png" />
     <Image Include="Texture\matrix.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +65,8 @@
     <None Include="Shader\1.color.vs" />
     <None Include="Shader\1.lamp.fs" />
     <None Include="Shader\1.lamp.vs" />
+    <None Include="Shader\model.fs" />
+    <None Include="Shader\model.vs" />
     <None Include="Shader\MultipleLight.fs" />
     <None Include="Shader\MultipleLight.vs" />
     <None Include="Shader\PointLight.fs" />
@@ -110,7 +129,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>E:\glfw-3.2.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\glfw-3.2.1\build\src\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>E:\glfw-3.2.1\build\src\Debug;E:\assimp-3.3.1\build\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>E:\glfw-3.2.1\include;$(IncludePath)</IncludePath>
@@ -124,7 +143,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>C:\Users\SunJiaHong\Pictures\openGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

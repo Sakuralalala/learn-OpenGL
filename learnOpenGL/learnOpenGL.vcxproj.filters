@@ -72,6 +72,57 @@
     <Image Include="Texture\matrix.jpg">
       <Filter>Texture</Filter>
     </Image>
+    <Image Include="Texture\arm_dif.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\arm_showroom_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\arm_showroom_spec.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\body_dif.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\body_showroom_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\body_showroom_spec.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\glass_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\glass_dif.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\hand_dif.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\hand_showroom_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\hand_showroom_spec.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\helmet_diff.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\helmet_showroom_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\helmet_showroom_spec.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\leg_dif.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\leg_showroom_ddn.png">
+      <Filter>Texture</Filter>
+    </Image>
+    <Image Include="Texture\leg_showroom_spec.png">
+      <Filter>Texture</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\texture.fs">
@@ -108,6 +159,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Shader\MultipleLight.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\model.fs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Shader\model.vs">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>
